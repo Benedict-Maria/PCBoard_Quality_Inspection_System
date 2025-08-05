@@ -1,0 +1,73 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f2f7f8;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.result-container {
+  margin-top: 60px;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 90%;
+  max-width: 700px;
+}
+
+.title {
+  font-family: 'Orbitron', sans-serif;
+  color: #027373;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.result-image {
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.actions {
+  margin-top: 20px;
+}
+
+.upload-again {
+  background-color: #027373;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.upload-again:hover {
+  background-color: #014b4b;
+}
+
+.defect-summary {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.defect-summary h2 {
+  color: #333;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.defect-summary ul {
+  list-style: disc;
+  padding-left: 20px;
+  color: #444;
+}

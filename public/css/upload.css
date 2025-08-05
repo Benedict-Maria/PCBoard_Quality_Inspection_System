@@ -1,0 +1,80 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #f2f7f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.upload-container {
+  text-align: center;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  width: 90%;
+  max-width: 500px;
+}
+
+.upload-header h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  color: #027373;
+}
+
+.upload-header p {
+  margin-top: 10px;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.drop-zone {
+  margin: 30px 0;
+  padding: 40px 20px;
+  border: 2px dashed #027373;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.drop-zone:hover {
+  background-color: #e6f9f9;
+}
+
+.drop-zone i {
+  font-size: 48px;
+  color: #0296a1;
+  margin-bottom: 10px;
+}
+
+.status-text {
+  font-size: 1rem;
+  color: #444;
+}
+
+.upload-btn {
+  background-color: #027373;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.upload-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.upload-btn:hover:not(:disabled) {
+  background-color: #014b4b;
+}
+
+.result-text {
+  margin-top: 15px;
+  color: #cc0000;
+  font-weight: bold;
+}
