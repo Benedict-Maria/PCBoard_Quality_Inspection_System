@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PCB Defect Detection Result</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/result.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="result-container">
+    <h1 class="title"><i class="fas fa-microchip"></i> PCB Defect Detection Result</h1>
+
+    <img id="resultImg" src="" alt="Detection Output" class="result-image" />
+
+    <div class="actions">
+      <a href="/upload" class="upload-again">
+        <i class="fas fa-upload"></i> Upload Another Image
+      </a>
+    </div>
+
+    <!-- Optional: Add defect summary here in future -->
+    <!-- 
+    <div class="defect-summary">
+      <h2>Detected Defects</h2>
+      <ul>
+        <li>Short Circuit - 2</li>
+        <li>Open Circuit - 1</li>
+      </ul>
+    </div> 
+    -->
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const imagePath = params.get("image");
+    if (imagePath) {
+      document.getElementById("resultImg").src = imagePath;
+    }
+  </script>
+
+</body>
+</html>
