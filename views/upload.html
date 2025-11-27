@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PCB Image Upload</title>
+  <link rel="stylesheet" href="/css/upload.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <div class="upload-container">
+    <div class="upload-header">
+      <h1>Upload PCB Image</h1>
+      <p>Submit your PCB board image to detect defects using YOLOv8</p>
+    </div>
+
+    <div class="drop-zone" id="dropZone">
+      <i class="fas fa-microchip"></i>
+      <p id="message" class="status-text">Click or Drag a PCB image here</p>
+      <input type="file" id="fileInput" name="image" accept="image/*" style="display: none;" />
+    </div>
+
+    <button class="upload-btn" id="detectBtn" disabled>Start Detection</button>
+
+    <div id="result-status" class="result-text"></div>
+  </div>
+
+  <script>
+    const fileInput = document.getElementById("fileInput");
+    const dropZone = document.getElementById("dropZone");
+    const detectBtn = document.getElementById("detectBtn");
+    const message = document.getElementById("message");
+    const resultStatus = document.getElementById("result-status");
+
+    let selectedFile = null;
+
+    dropZone.addEventListener("click", () => fileInput.click());
+
+    fileInput.addEventListener("change", () => {
+      const file = fileInput.files[0];
+      if (file && file.type.startsWith("image/")) {
+        selectedFile = file;
+        message.textContent = "✅ Image selected: " + file.name;
+        detectBtn.disabled = false;
+      } else {
+        selectedFile = null;
+        message.textContent = "❌ Invalid file. Please select an image.";
+        detectBtn.disabled = true;
+      }
+    });
+
+    detectBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (!selectedFile) {
+        resultStatus.textContent = "Please select an image first.";
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("image", selectedFile);
+
+      detectBtn.textContent = "Detecting...";
+      detectBtn.disabled = true;
+      resultStatus.textContent = "";
+
+      fetch("/topython", {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.image) {
+          window.location.href = `/result?image=${encodeURIComponent(data.image)}`;
+        } else {
+          resultStatus.textContent = "⚠️ Detection failed. Please try again.";
+          detectBtn.disabled = false;
+          detectBtn.textContent = "Start Detection";
+        }
+      })
+      .catch(() => {
+        resultStatus.textContent = "❌ Server error. Try again later.";
+        detectBtn.disabled = false;
+        detectBtn.textContent = "Start Detection";
+      });
+    });
+  </script>
+
+</body>
+</html>
